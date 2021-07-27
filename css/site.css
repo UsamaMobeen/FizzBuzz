@@ -1,4 +1,5 @@
 :root {
+    
     --primary-color: #1d5888;
     --secondary-color: #FFBD4A;
     --dark-color: #292929;
@@ -10,11 +11,11 @@ body {
 }
 
 nav {
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
 }
 
 footer {
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
     padding-right: 1rem;
 }
 
@@ -59,6 +60,20 @@ pre[class*="language-"] {
 white-space: pre-wrap;
 word-break: break-all;
 word-wrap: break-word;
+}
+
+
+.Fizz {
+ color: rgb(216, 17, 17);
+}
+
+.Buzz {
+ color: rgb(40, 4, 172);
+}
+
+.FizzBuzz {
+    color: rgb(37, 216, 37);
+  font-weight: bold;
 }
 
 

@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>APP NAME: Coding Project By Usama Mobeen</title>
+    <title>FIZZBUZZ: Coding Project By Usama Mobeen</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,7 @@
 <!--==== Nav Section ====-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><i class="fas fa-laptop-code me-1" style="color: #FFBD4A;"></i>MY APP</a>
+        <a class="navbar-brand" href="/index.html"><i class="fas fa-laptop-code me-1" style="color: #FFBD4A;"></i>Fizz Buzz</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,10 +40,10 @@
                     <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="blank" href="#">GitHub</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/UsamaMobeen/FizzBuzz">GitHub</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="blank" href="#">About</a>
+                    <a class="nav-link" target="_blank" href="https://me-usama.netlify.app">About</a>
                 </li>
             </ul>
         </div>
@@ -52,21 +52,121 @@
 <!--==== Main Section ====-->
     <main class="flex-shrink-0">
      <div class="container g-5 py-5 px-5 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code For My App</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code For FizzBuzz</h2>
         <div class="row row-col-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                        //Call Hello  World
-                        function HelloWorld() {
-                             alert("Hello World");
+                    // get Values from the user.  
+                    function getValues(){
+                    
+                        //get the user values from the page
+                        let fizzValue = document.getElementById("fizzValue").value;
+                        let buzzValue = document.getElementById("buzzValue").value;
+                        //parse for number
+                        fizzValue = parseInt(fizzValue);
+                        buzzValue = parseInt(buzzValue);
+                        //check that the numbers are integers
+                        if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+                            
+                            //call fizzBuzz()
+                            let fbArray = fizzBuzz(fizzValue, buzzValue);
+                            //call displayData and write the values to the screen
+                    
+                            displayData(fbArray);
                         }
+                        else{
+                            alert("You must enter the integers");
+                        }
+                    
+                    }
+                    
+                    function fizzBuzz(fizzValue, buzzValue){
+                    
+                        let returnArray = [];
+                        //init the array
+                    
+                        //loop iterate 1 to 100
+                        for (let i = 1; i <= 100; i++)
+                        {
+                            
+                            //check the num is divisible by both (3 and 5)
+                            //check to see if divisible by fizz value (3)
+                             //check to see if divisible by buzz value (5)
+                            if (i % fizzValue == 0 && i % buzzValue == 0) {
+                                returnArray.push('FizzBuzz');
+                            }
+                            else if (i % fizzValue == 0){
+                                returnArray.push('Fizz');
+                            }
+                            else if (i % buzzValue == 0){
+                                returnArray.push('Buzz');
+                            }
+                            else{
+                                returnArray.push(i);
+                            }
+                        }
+                        return returnArray;
+                    }
+                    
+                    function displayData(fbArray){
+                    
+                        //loop over the array and create a tablerow for each item
+                        //get the table body element from the page
+                        let tableBody =  document.getElementById("results");
+                    
+                        let templateRow = document.getElementById("fbTemplate");
+                    
+                        tableBody.innerHTML = "";
+                    
+                        for (let index = 0; index < fbArray.length; index += 5) {
+                            
+                            let tableRow = document.importNode(templateRow.content, true);
+                    
+                            let rowCols = tableRow.querySelectorAll("td");
+                    
+                            rowCols[0].classList.add(fbArray[index]);
+                            rowCols[0].textContent = fbArray[index];
+                            
+                            rowCols[1].classList.add(fbArray[index + 1]);
+                            rowCols[1].textContent = fbArray[index+1];
+                        
+                            rowCols[2].classList.add(fbArray[index + 2]);
+                            rowCols[2].textContent = fbArray[index+2];
+                          
+                            rowCols[3].classList.add(fbArray[index + 3]);
+                            rowCols[3].textContent = fbArray[index+3];
+                            
+                            rowCols[4].classList.add(fbArray[index + 4]);
+                            rowCols[4].textContent = fbArray[index+4];
+                            
+                            tableBody.appendChild(tableRow);
+                            
+                            
+                        }
+                        
+                    }   
                     </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p>The Code is structed in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                <h5 class="pb-2 border-bottom border-2">getValues()</h5>
+                <p>The getValues() function is responsible for retrieving the numbers the user provides in our input fields and parsing them as integers. If both inputs provided by the user are both numbers than we will call the fizzBuzz() and displayData() functions described below.</p>
+                <br>
+                <h5 class="pb-2 border-bottom border-2">fizzBuzz()</h5>
+                <p>The fizzBuzz() function takes two parameters which are the fizz value and the buzz value. The function uses a for loop to iterate through the numbers between the "1" and "100". Then checks the given condition for <strong>"FizzBuzz"</strong>, <strong>"Fizz"</strong> and <strong>"Buzz"</strong> if any conditons meets that pushes string instead of that [particular] number to an array. The array is then returned.</p>
+                <br>
+                <h5 class="pb-2 border-bottom border-2">fizzBuzzB()</h5>
+                <p>The fizzBuzzB() function takes two parameters which are the fizz value and the buzz value. The function uses a for loop to iterate through the numbers between the "1" and "100". Then checks the given condition using switch for <strong>"FizzBuzz"</strong>, <strong>"Fizz"</strong> and <strong>"Buzz"</strong> if any conditons meets that pushes string instead of that [particular] number to an array. The array is then returned.</p>
+                <br>
+                <h5 class="pb-2 border-bottom border-2">fizzBuzzC()</h5>
+                <p>The fizzBuzzC() function takes two parameters which are the fizz value and the buzz value. The function uses a for loop to iterate through the numbers between the "1" and "100". Then checks the given condition using ternary operator for <strong>"Fizz"</strong> and <strong>"Buzz"</strong> if any conditons meets that pushes string instead of that [particular] number to an array otherwise it pushes that number. The array is then returned.</p>
+                <br>
+                <h5 class="pb-2 border-bottom border-2">displayData()</h5>
+                <p>The displayData() function takes one parameter which is an array. The function retrieves the table and template we made in HTML using the id and then sets the innerHTML of table to be empty so if the user spams the button it does not constantly add to the old table. Then using a for loop to iterate through the array of numbers (these are all the numbers between 1 and 100) 
+                    Then import the template content using <b>"importNode"</b>. After this getting the html content <strong>"td"</strong> which is inside <b>tr</b> of the template. 
+                    Then set the text Content of that td with actual value inside array. Addition to this applying: some classes to the <strong>"td"</strong> with custom styles.</p>
+                <br>
+                <br>
             </div>
         </div>
      </div>
@@ -86,10 +186,10 @@
              <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                  <div class="row">
                       <div class="col social">
-                        <a href="#" target="blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="https://www.linkedin.com/in/usama-mobeen-56088b201/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
                       </div>
                       <div class="col social">
-                        <a href="#" target="blank"><i class="fab fa-github fa-2x"></i></a>
+                        <a target="_blank" href="https://github.com/UsamaMobeen/FizzBuzz"><i class="fab fa-github fa-2x"></i></a>
                       </div>
                       <div class="col social">
                         <a href="#" target="blank"><i class="fab fa-twitter fa-2x"></i></a>
